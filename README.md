@@ -30,3 +30,7 @@ Recently the state space models (SSMs) with efficient hardware-aware designs, i.
 <img src="assets/vim_teaser_v1.7.png" />
 </div>
 
+## Overview
+<div align="center">
+<img src="assets/vim_pipeline_v1.9.png" />
+</div>
