@@ -34,3 +34,15 @@ Recently the state space models (SSMs) with efficient hardware-aware designs, i.
 <div align="center">
 <img src="assets/vim_pipeline_v1.9.png" />
 </div>
+
+## Citation
+If you find Vim is useful in your research or applications, please consider giving us a star 🌟 and citing it by the following BibTeX entry.
+
+```bibtex
+ @article{vim,
+  title={Vision Mamba: Efficient Visual Representation Learning with Bidirectional State Space Model},
+  author={Lianghui Zhu and Bencheng Liao and Qian Zhang and Xinlong Wang and Wenyu Liu and Xinggang Wang},
+  journal={arXiv preprint arXiv:2401.09417},
+  year={2024}
+}
+```
