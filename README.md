@@ -49,9 +49,15 @@ Recently the state space models (SSMs) with efficient hardware-aware designs, i.
 - Requirements: vim_requirements.txt
   - `pip3 install vim/vim_requirements.txt`
 
-## Pretrain Vim
+## Train Your Vim
 
 `bash vim/scripts/pt-vim-t.sh`
+
+## Model Weights
+
+| Model | #param. | Top-1 Acc. | Hugginface Repo |
+|:------------------------------------------------------------------:|:-------------:|:----------:|:----------:|
+| [Vim-tiny](https://huggingface.co/hustvl/Vim-tiny)    |       7M       |   73.1    | https://huggingface.co/hustvl/Vim-tiny |
 
 ## Acknowledgement :heart:
 This project is based on Mamba ([paper](https://arxiv.org/abs/2312.00752), [code](https://github.com/state-spaces/mamba)), Causal-Conv1d ([code](https://github.com/Dao-AILab/causal-conv1d)), DeiT ([paper](https://arxiv.org/abs/2012.12877), [code](https://github.com/facebookresearch/deit)). Thanks for their wonderful works.
