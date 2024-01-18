@@ -37,6 +37,25 @@ Recently the state space models (SSMs) with efficient hardware-aware designs, i.
 <img src="assets/vim_pipeline_v1.9.png" />
 </div>
 
+## Envs. for Pretraining
+
+- Python 3.10.13
+
+  - conda create -n your_env_name python=3.10.13
+
+- torch 2.1.1 + cu118
+  - pip install torch==2.1.1 torchvision==0.16.1 torchaudio==2.1.1 --index-url https://download.pytorch.org/whl/cu118
+
+- Requirements: vim_requirements.txt
+  - pip3 install vim/vim_requirements.txt
+
+## Pretrain Vim
+
+`bash vim/scripts/pt-vim-t.sh`
+
+## Acknowledgement :heart:
+This project is based on Mamba ([paper](https://arxiv.org/abs/2312.00752), [code](https://github.com/state-spaces/mamba)), Causal-Conv1d ([code](https://github.com/Dao-AILab/causal-conv1d)), DeiT ([paper](https://arxiv.org/abs/2012.12877), [code](https://github.com/facebookresearch/deit)). Thanks for their wonderful works.
+
 ## Citation
 If you find Vim is useful in your research or applications, please consider giving us a star 🌟 and citing it by the following BibTeX entry.
 
