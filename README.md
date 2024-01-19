@@ -47,7 +47,14 @@ Recently the state space models (SSMs) with efficient hardware-aware designs, i.
   - `pip install torch==2.1.1 torchvision==0.16.1 torchaudio==2.1.1 --index-url https://download.pytorch.org/whl/cu118`
 
 - Requirements: vim_requirements.txt
-  - `pip3 install vim/vim_requirements.txt`
+  - `pip install -r vim/vim_requirements.txt`
+
+- Install ``causal_conv1d`` and ``mamba``
+  - `pip install -e causal_conv1d`
+  - `pip install -e mamba`
+  
+  
+
 
 ## Train Your Vim
 
