@@ -62,7 +62,7 @@ Recently the state space models (SSMs) with efficient hardware-aware designs, i.
 
 ## Model Weights
 
-| Model | #param. | Top-1 Acc. | Top-5 Acc. | Hugginface Repo |
+| Model | #param. | Top-1 Acc. | Top-5 Acc. | Hugging Face Repo |
 |:------------------------------------------------------------------:|:-------------:|:----------:|:----------:|:----------:|
 | [Vim-tiny](https://huggingface.co/hustvl/Vim-tiny)    |       7M       |   73.1   | 91.1 | https://huggingface.co/hustvl/Vim-tiny |
 
