@@ -59,6 +59,11 @@ Recently the state space models (SSMs) with efficient hardware-aware designs, i.
 |:------------------------------------------------------------------:|:-------------:|:----------:|:----------:|:----------:|
 | [Vim-tiny](https://huggingface.co/hustvl/Vim-tiny)    |       7M       |   73.1   | 91.1 | https://huggingface.co/hustvl/Vim-tiny |
 
+## Evaluation on Provided Weights
+To evaluate `Vim-Ti` on ImageNet-1K, run:
+```bash
+python main.py --eval --resume /path/to/ckpt --model vim_tiny_patch16_224_bimambav2_final_pool_mean_abs_pos_embed_rope_also_residual_with_cls_token --data-path /path/to/imagenet
+```
 ## Acknowledgement :heart:
 This project is based on Mamba ([paper](https://arxiv.org/abs/2312.00752), [code](https://github.com/state-spaces/mamba)), Causal-Conv1d ([code](https://github.com/Dao-AILab/causal-conv1d)), DeiT ([paper](https://arxiv.org/abs/2012.12877), [code](https://github.com/facebookresearch/deit)). Thanks for their wonderful works.
 
