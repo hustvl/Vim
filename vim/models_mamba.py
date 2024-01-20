@@ -13,6 +13,8 @@ from timm.models.layers import trunc_normal_
 from timm.models.layers import DropPath, PatchEmbed
 from timm.models.vision_transformer import _load_weights
 
+from huggingface_hub import PyTorchModelHubMixin, hf_hub_download
+
 import math
 
 from collections import namedtuple
@@ -183,6 +185,7 @@ def segm_init_weights(m):
     elif isinstance(m, nn.LayerNorm):
         nn.init.constant_(m.bias, 0)
         nn.init.constant_(m.weight, 1.0)
+
 
 class VisionMamba(nn.Module):
     def __init__(self, 
@@ -379,6 +382,34 @@ class VisionMamba(nn.Module):
             return x
         x = self.head(x)
         return x
+
+
+config = dict(patch_size=16, embed_dim=192, depth=24, rms_norm=True, residual_in_fp32=True, fused_add_norm=True, final_pool_type='mean', if_abs_pos_embed=True, if_rope=True, if_rope_residual=True, bimamba_type="v2", if_cls_token=True)
+
+
+class VisionMambaForImageClassification(VisionMamba, PyTorchModelHubMixin):
+    def __init__(self, config: dict):
+        super().__init__(**config)
+    
+    def forward(self, x):
+        super().forward(x)
+
+
+model = VisionMambaForImageClassification(config)
+
+# load weights
+filepath = hf_hub_download(repo_id="hustvl/Vim-tiny", filename="vim_tiny_73p1.pth", repo_type="model")
+state_dict = torch.load(filepath, map_location="cpu")
+model.load_state_dict(torch.load("mamba-vision-tiny.pt"))
+
+# save locally
+model.save_pretrained(".", config=config)
+
+# push to HF hub
+model.push_to_hub("nielsr/mamba-vision-tiny", config=config)
+
+# reload from hub
+reload_model = VisionMambaForImageClassification.from_pretrained("nielsr/mamba-vision-tiny")
 
 
 @register_model
