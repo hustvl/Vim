@@ -77,7 +77,7 @@ Recently the state space models (SSMs) with efficient hardware-aware designs, i.
 ## Evaluation on Provided Weights
 To evaluate `Vim-Ti` on ImageNet-1K, run:
 ```bash
-python main.py --eval --resume /path/to/ckpt --model vim_tiny_patch16_224_bimambav2_final_pool_mean_abs_pos_embed_with_middle_cls_token_div2 --data-path /path/to/imagenet
+python main.py --eval --resume /path/to/ckpt --model vim_tiny_patch16_224_bimambav2_final_pool_mean_abs_pos_embed_with_midclstok_div2 --data-path /path/to/imagenet
 ```
 ## Acknowledgement :heart:
 This project is based on Mamba ([paper](https://arxiv.org/abs/2312.00752), [code](https://github.com/state-spaces/mamba)), Causal-Conv1d ([code](https://github.com/Dao-AILab/causal-conv1d)), DeiT ([paper](https://arxiv.org/abs/2012.12877), [code](https://github.com/facebookresearch/deit)). Thanks for their wonderful works.
