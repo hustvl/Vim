@@ -195,6 +195,26 @@ def get_args_parser():
     parser.add_argument('--no_amp', action='store_false', dest='if_amp')
     parser.set_defaults(if_amp=True)
 
+    # if continue with inf
+    parser.add_argument('--if_continue_inf', action='store_true')
+    parser.add_argument('--no_continue_inf', action='store_false', dest='if_continue_inf')
+    parser.set_defaults(if_continue_inf=False)
+
+    # if use nan to num
+    parser.add_argument('--if_nan2num', action='store_true')
+    parser.add_argument('--no_nan2num', action='store_false', dest='if_nan2num')
+    parser.set_defaults(if_nan2num=False)
+
+    # if use random token position
+    parser.add_argument('--if_random_cls_token_position', action='store_true')
+    parser.add_argument('--no_random_cls_token_position', action='store_false', dest='if_random_cls_token_position')
+    parser.set_defaults(if_random_cls_token_position=False)    
+
+    # if use random token rank
+    parser.add_argument('--if_random_token_rank', action='store_true')
+    parser.add_argument('--no_random_token_rank', action='store_false', dest='if_random_token_rank')
+    parser.set_defaults(if_random_token_rank=False)
+
     parser.add_argument('--local-rank', default=0, type=int)
     return parser
 
@@ -458,7 +478,7 @@ def main(args):
             optimizer, device, epoch, loss_scaler, amp_autocast,
             args.clip_grad, model_ema, mixup_fn,
             set_training_mode=args.train_mode,  # keep in eval mode for deit finetuning / train mode for training and deit III finetuning
-            args = args, 
+            args=args,
         )
 
         lr_scheduler.step(epoch)

@@ -19,13 +19,13 @@ ArXiv Preprint ([arXiv 2401.09417](https://arxiv.org/abs/2401.09417))
 
 
 ### News
-
+* **` Feb. 10th, 2024`:** We update Vim-tiny/small weights and training scripts. By placing the class token at middle, Vim achieves improved results. Further details can be found in code and our updated [arXiv](https://arxiv.org/abs/2401.09417).
 
 * **` Jan. 18th, 2024`:** We released our paper on Arxiv. Code/Models are coming soon. Please stay tuned! ☕️
 
 
 ## Abstract
-Recently the state space models (SSMs) with efficient hardware-aware designs, i.e., Mamba, have shown great potential for long sequence modeling. Building efficient and generic vision backbones purely upon SSMs is an appealing direction. However, representing visual data is challenging for SSMs due to the position-sensitivity of visual data and the requirement of global context for visual understanding. In this paper, we show that the reliance of visual representation learning on self-attention is not necessary and propose a new generic vision backbone with bidirectional Mamba blocks (Vim), which marks the image sequences with position embeddings and compresses the visual representation with bidirectional state space models. On ImageNet classification, COCO object detection, and ADE20k semantic segmentation tasks, Vim achieves higher performance compared to well-established vision transformers like DeiT, while also demonstrating significantly improved computation & memory efficiency. For example, Vim is 2.8× faster than DeiT and saves 86.8% GPU memory when performing batch inference on images with a resolution of 1248×1248. The results demonstrate that Vim is capable of overcoming the computation & memory constraints on performing Transformer-style understanding for high-resolution images and it has great potential to become the next-generation backbone for vision foundation models.
+Recently the state space models (SSMs) with efficient hardware-aware designs, i.e., the Mamba deep learning model, have shown great potential for long sequence modeling. Meanwhile building efficient and generic vision backbones purely upon SSMs is an appealing direction. However, representing visual data is challenging for SSMs due to the position-sensitivity of visual data and the requirement of global context for visual understanding. In this paper, we show that the reliance on self-attention for visual representation learning is not necessary and propose a new generic vision backbone with bidirectional Mamba blocks (Vim), which marks the image sequences with position embeddings and compresses the visual representation with bidirectional state space models. On ImageNet classification, COCO object detection, and ADE20k semantic segmentation tasks, Vim achieves higher performance compared to well-established vision transformers like DeiT, while also demonstrating significantly improved computation & memory efficiency. For example, Vim is 2.8x faster than DeiT and saves 86.8% GPU memory when performing batch inference to extract features on images with a resolution of 1248x1248. The results demonstrate that Vim is capable of overcoming the computation & memory constraints on performing Transformer-style understanding for high-resolution images and it has great potential to be the next-generation backbone for vision foundation models.
 
 
 <div align="center">
@@ -50,8 +50,8 @@ Recently the state space models (SSMs) with efficient hardware-aware designs, i.
   - `pip install -r vim/vim_requirements.txt`
 
 - Install ``causal_conv1d`` and ``mamba``
-  - `pip install -e causal_conv1d`
-  - `pip install -e mamba`
+  - `pip install -e causal_conv1d>=1.1.0`
+  - `pip install -e mamba-1p1p1`
   
   
 
@@ -60,16 +60,24 @@ Recently the state space models (SSMs) with efficient hardware-aware designs, i.
 
 `bash vim/scripts/pt-vim-t.sh`
 
+## Train Your Vim at Finer Granularity
+`bash vim/scripts/ft-vim-t.sh`
+
 ## Model Weights
 
 | Model | #param. | Top-1 Acc. | Top-5 Acc. | Hugginface Repo |
 |:------------------------------------------------------------------:|:-------------:|:----------:|:----------:|:----------:|
-| [Vim-tiny](https://huggingface.co/hustvl/Vim-tiny)    |       7M       |   73.1   | 91.1 | https://huggingface.co/hustvl/Vim-tiny |
+| [Vim-tiny](https://huggingface.co/hustvl/Vim-tiny-middle-clstoken)    |       7M       |   76.1   | 93.0 | https://huggingface.co/hustvl/Vim-tiny-middle-clstoken |
+| [Vim-tiny<sup>+</sup>](https://huggingface.co/hustvl/Vim-tiny-middle-clstoken)    |       7M       |   78.3   | 94.2 | https://huggingface.co/hustvl/Vim-tiny-middle-clstoken |
+| [Vim-small](https://huggingface.co/hustvl/Vim-small-middle-clstoken)    |       26M       |   80.5   | 95.1 | https://huggingface.co/hustvl/Vim-small-middle-clstoken |
+| [Vim-small<sup>+</sup>](https://huggingface.co/hustvl/Vim-small-middle-clstoken)    |       26M       |   81.6   | 95.4 | https://huggingface.co/hustvl/Vim-small-middle-clstoken |
 
+**Notes:**
+- <sup>+</sup> means that we finetune at finer granularity with short schedule.
 ## Evaluation on Provided Weights
 To evaluate `Vim-Ti` on ImageNet-1K, run:
 ```bash
-python main.py --eval --resume /path/to/ckpt --model vim_tiny_patch16_224_bimambav2_final_pool_mean_abs_pos_embed_rope_also_residual_with_cls_token --data-path /path/to/imagenet
+python main.py --eval --resume /path/to/ckpt --model vim_tiny_patch16_224_bimambav2_final_pool_mean_abs_pos_embed_with_middle_cls_token_div2 --data-path /path/to/imagenet
 ```
 ## Acknowledgement :heart:
 This project is based on Mamba ([paper](https://arxiv.org/abs/2312.00752), [code](https://github.com/state-spaces/mamba)), Causal-Conv1d ([code](https://github.com/Dao-AILab/causal-conv1d)), DeiT ([paper](https://arxiv.org/abs/2012.12877), [code](https://github.com/facebookresearch/deit)). Thanks for their wonderful works.

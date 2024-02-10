@@ -9,6 +9,7 @@ from typing import Iterable, Optional
 
 import torch
 
+import timm
 from timm.data import Mixup
 from timm.utils import accuracy, ModelEma
 
@@ -50,7 +51,8 @@ def train_one_epoch(model: torch.nn.Module, criterion: DistillationLoss,
             targets = targets.gt(0.0).type(targets.dtype)
          
         with amp_autocast():
-            outputs = model(samples)
+            outputs = model(samples, if_random_cls_token_position=args.if_random_cls_token_position, if_random_token_rank=args.if_random_token_rank)
+            # outputs = model(samples)
             if not args.cosub:
                 loss = criterion(samples, outputs, targets)
             else:
@@ -60,16 +62,24 @@ def train_one_epoch(model: torch.nn.Module, criterion: DistillationLoss,
                 loss = loss + 0.25 * criterion(outputs[0], outputs[1].detach().sigmoid())
                 loss = loss + 0.25 * criterion(outputs[1], outputs[0].detach().sigmoid()) 
 
+        if args.if_nan2num:
+            with amp_autocast():
+                loss = torch.nan_to_num(loss)
+
         loss_value = loss.item()
 
         if not math.isfinite(loss_value):
             print("Loss is {}, stopping training".format(loss_value))
-            sys.exit(1)
+            if args.if_continue_inf:
+                optimizer.zero_grad()
+                continue
+            else:
+                sys.exit(1)
 
         optimizer.zero_grad()
 
         # this attribute is added by timm on one optimizer (adahessian)
-        if loss_scaler != 'none':
+        if isinstance(loss_scaler, timm.utils.NativeScaler):
             is_second_order = hasattr(optimizer, 'is_second_order') and optimizer.is_second_order
             loss_scaler(loss, optimizer, clip_grad=max_norm,
                     parameters=model.parameters(), create_graph=is_second_order)
