@@ -67,10 +67,10 @@ Recently the state space models (SSMs) with efficient hardware-aware designs, i.
 
 | Model | #param. | Top-1 Acc. | Top-5 Acc. | Hugginface Repo |
 |:------------------------------------------------------------------:|:-------------:|:----------:|:----------:|:----------:|
-| [Vim-tiny](https://huggingface.co/hustvl/Vim-tiny-middle-clstoken)    |       7M       |   76.1   | 93.0 | https://huggingface.co/hustvl/Vim-tiny-middle-clstoken |
-| [Vim-tiny<sup>+</sup>](https://huggingface.co/hustvl/Vim-tiny-middle-clstoken)    |       7M       |   78.3   | 94.2 | https://huggingface.co/hustvl/Vim-tiny-middle-clstoken |
-| [Vim-small](https://huggingface.co/hustvl/Vim-small-middle-clstoken)    |       26M       |   80.5   | 95.1 | https://huggingface.co/hustvl/Vim-small-middle-clstoken |
-| [Vim-small<sup>+</sup>](https://huggingface.co/hustvl/Vim-small-middle-clstoken)    |       26M       |   81.6   | 95.4 | https://huggingface.co/hustvl/Vim-small-middle-clstoken |
+| [Vim-tiny](https://huggingface.co/hustvl/Vim-tiny-midclstok)    |       7M       |   76.1   | 93.0 | https://huggingface.co/hustvl/Vim-tiny-midclstok |
+| [Vim-tiny<sup>+</sup>](https://huggingface.co/hustvl/Vim-tiny-midclstok)    |       7M       |   78.3   | 94.2 | https://huggingface.co/hustvl/Vim-tiny-midclstok |
+| [Vim-small](https://huggingface.co/hustvl/Vim-small-midclstok)    |       26M       |   80.5   | 95.1 | https://huggingface.co/hustvl/Vim-small-midclstok |
+| [Vim-small<sup>+</sup>](https://huggingface.co/hustvl/Vim-small-midclstok)    |       26M       |   81.6   | 95.4 | https://huggingface.co/hustvl/Vim-small-midclstok |
 
 **Notes:**
 - <sup>+</sup> means that we finetune at finer granularity with short schedule.
