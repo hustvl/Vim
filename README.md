@@ -8,7 +8,7 @@
 
 (\*) equal contribution, (<sup>:email:</sup>) corresponding author.
 
-ArXiv Preprint ([arXiv 2401.09417](https://arxiv.org/abs/2401.09417))
+ArXiv Preprint ([arXiv 2401.09417](https://arxiv.org/abs/2401.09417)), HuggingFace Page ([🤗 2401.09417](https://huggingface.co/papers/2401.09417))
 
 
 </div>
