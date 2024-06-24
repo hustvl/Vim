@@ -1,0 +1,26 @@
+version: "2.3"
+services:
+  detectron2:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        USER_ID: ${USER_ID:-1000}
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - capabilities:
+              - gpu
+    shm_size: "8gb"
+    ulimits:
+      memlock: -1
+      stack: 67108864
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix:ro
+    environment:
+      - DISPLAY=$DISPLAY
+      - NVIDIA_VISIBLE_DEVICES=all
+    # Uncomment with proper source to access webcam from docker
+    # devices: 
+    #   - /dev/video0:/dev/video0
