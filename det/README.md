@@ -6,7 +6,29 @@
 
   - `conda create -n your_env_name python=3.9.19`
 
-- Requirements for reference: det-requirements.txt
+  ```
+  # some packages
+  pip3 install numpy==1.23.4
+  pip3 install iopath==0.1.9
+  pip3 install cloudpickle==2.2.1
+  pip3 install omegaconf==2.3.0
+  pip3 install Pillow==8.2.0
+  pip3 install requests==2.28.1
+  pip3 install sympy==1.12.1
+  pip3 install pycocotools==2.0.6
+  pip3 install Shapely==1.8.1
+
+  # install d2
+  cd det
+  pip3 install -e .
+
+  # link datasets
+  mkdir datasets
+  cd datasets
+  ln -s /path/to/coco ./
+  ```
+
+- Meet some problems of env? Requirements for reference: det-requirements.txt
 
 
 ## Train Your VimDet
