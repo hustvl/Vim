@@ -12,27 +12,6 @@ beautifulsoup4==4.12.3
 bidict==0.23.1
 black==24.4.2
 buildtools==1.0.6
-byted-torch-monitor @ https://d.scm.byted.org/api/v2/download/lab.pytorch.torch_monitor_1.0.0.6.tar.gz#sha256=333bc7b5f093bb449cad019a5351702f7497fc7b5e4a3f1c82f6567e607c3e1e
-byted-wandb==0.13.72
-bytedance-context==0.7.1
-bytedance-metrics==0.5.1
-bytedance.modelhub==0.0.67
-bytedance.servicediscovery==0.1.2
-bytedbackgrounds==0.0.6
-byteddatabus==1.0.6
-byteddps==0.1.2
-bytedenv==0.6.2
-bytedlogger==0.15.1
-bytedmemfd==0.2
-bytedmetrics==0.10.2
-bytedpymongo==2.0.5
-bytedrh2==1.18.9a2
-bytedservicediscovery==0.17.4
-bytedtcc==1.4.2
-bytedtos==1.1.16
-bytedtrace==0.3.0
-bytedztijwthelper==0.0.23
-bytedztispiffe==0.0.14
 -e git+https://github.com/hustvl/Vim@a452c029183837561cc09b0c39ff61d3af1d0eb8#egg=causal_conv1d&subdirectory=reference/causal-conv1d-1.1.0
 certifi==2024.6.2
 cffi==1.16.0
