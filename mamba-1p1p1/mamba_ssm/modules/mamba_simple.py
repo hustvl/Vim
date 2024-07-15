@@ -51,7 +51,7 @@ class Mamba(nn.Module):
         device=None,
         dtype=None,
         bimamba_type="none",
-        if_devide_out=False,
+        if_divide_out=False,
         init_layer_scale=None,
     ):
         factory_kwargs = {"device": device, "dtype": dtype}
@@ -65,7 +65,7 @@ class Mamba(nn.Module):
         self.use_fast_path = use_fast_path
         self.layer_idx = layer_idx
         self.bimamba_type = bimamba_type
-        self.if_devide_out = if_devide_out
+        self.if_divide_out = if_divide_out
 
         self.init_layer_scale = init_layer_scale
         if init_layer_scale is not None:
@@ -240,7 +240,7 @@ class Mamba(nn.Module):
                     delta_softplus=True,
                 )
                 # F.linear(rearrange(out_z, "b d l -> b l d"), out_proj_weight, out_proj_bias)
-                if not self.if_devide_out:
+                if not self.if_divide_out:
                     out = F.linear(rearrange(out + out_b.flip([-1]), "b d l -> b l d"), self.out_proj.weight, self.out_proj.bias)
                 else:
                     out = F.linear(rearrange(out + out_b.flip([-1]), "b d l -> b l d") / 2, self.out_proj.weight, self.out_proj.bias)

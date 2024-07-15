@@ -82,6 +82,7 @@ class Block(nn.Module):
         super().__init__()
         self.residual_in_fp32 = residual_in_fp32
         self.fused_add_norm = fused_add_norm
+        # import ipdb; ipdb.set_trace()
         self.mixer = mixer_cls(dim)
         self.norm = norm_cls(dim)
         self.drop_path = DropPath(drop_path) if drop_path > 0. else nn.Identity()
@@ -151,7 +152,7 @@ def create_block(
     dtype=None,
     if_bimamba=False,
     bimamba_type="none",
-    if_devide_out=False,
+    if_divide_out=False,
     init_layer_scale=None,
 ):
     if if_bimamba:
@@ -160,7 +161,7 @@ def create_block(
         ssm_cfg = {}
     factory_kwargs = {"device": device, "dtype": dtype}
     # import ipdb; ipdb.set_trace()
-    mixer_cls = partial(Mamba, layer_idx=layer_idx, bimamba_type=bimamba_type, if_devide_out=if_devide_out, init_layer_scale=init_layer_scale, **ssm_cfg, **factory_kwargs)
+    mixer_cls = partial(Mamba, layer_idx=layer_idx, bimamba_type=bimamba_type, if_divide_out=if_divide_out, init_layer_scale=init_layer_scale, **ssm_cfg, **factory_kwargs)
     norm_cls = partial(
         nn.LayerNorm if not rms_norm else RMSNorm, eps=norm_epsilon, **factory_kwargs
     )
@@ -254,7 +255,7 @@ class VisionMamba(nn.Module):
                  if_bimamba=False,
                  bimamba_type="none",
                  if_cls_token=False,
-                 if_devide_out=False,
+                 if_divide_out=False,
                  init_layer_scale=None,
                  use_double_cls_token=False,
                  use_middle_cls_token=False,
@@ -327,7 +328,7 @@ class VisionMamba(nn.Module):
                     if_bimamba=if_bimamba,
                     bimamba_type=bimamba_type,
                     drop_path=inter_dpr[i],
-                    if_devide_out=if_devide_out,
+                    if_divide_out=if_divide_out,
                     init_layer_scale=init_layer_scale,
                     **factory_kwargs,
                 )
@@ -551,7 +552,7 @@ class VisionMamba(nn.Module):
 @register_model
 def vim_tiny_patch16_224_bimambav2_final_pool_mean_abs_pos_embed_with_midclstok_div2(pretrained=False, **kwargs):
     model = VisionMamba(
-        patch_size=16, embed_dim=192, depth=24, rms_norm=True, residual_in_fp32=True, fused_add_norm=True, final_pool_type='mean', if_abs_pos_embed=True, if_rope=False, if_rope_residual=False, bimamba_type="v2", if_cls_token=True, if_devide_out=True, use_middle_cls_token=True, **kwargs)
+        patch_size=16, embed_dim=192, depth=24, rms_norm=True, residual_in_fp32=True, fused_add_norm=True, final_pool_type='mean', if_abs_pos_embed=True, if_rope=False, if_rope_residual=False, bimamba_type="v2", if_cls_token=True, if_divide_out=True, use_middle_cls_token=True, **kwargs)
     model.default_cfg = _cfg()
     if pretrained:
         checkpoint = torch.hub.load_state_dict_from_url(
@@ -564,7 +565,7 @@ def vim_tiny_patch16_224_bimambav2_final_pool_mean_abs_pos_embed_with_midclstok_
 @register_model
 def vim_tiny_patch16_stride8_224_bimambav2_final_pool_mean_abs_pos_embed_with_midclstok_div2(pretrained=False, **kwargs):
     model = VisionMamba(
-        patch_size=16, stride=8, embed_dim=192, depth=24, rms_norm=True, residual_in_fp32=True, fused_add_norm=True, final_pool_type='mean', if_abs_pos_embed=True, if_rope=False, if_rope_residual=False, bimamba_type="v2", if_cls_token=True, if_devide_out=True, use_middle_cls_token=True, **kwargs)
+        patch_size=16, stride=8, embed_dim=192, depth=24, rms_norm=True, residual_in_fp32=True, fused_add_norm=True, final_pool_type='mean', if_abs_pos_embed=True, if_rope=False, if_rope_residual=False, bimamba_type="v2", if_cls_token=True, if_divide_out=True, use_middle_cls_token=True, **kwargs)
     model.default_cfg = _cfg()
     if pretrained:
         checkpoint = torch.hub.load_state_dict_from_url(
@@ -577,7 +578,7 @@ def vim_tiny_patch16_stride8_224_bimambav2_final_pool_mean_abs_pos_embed_with_mi
 @register_model
 def vim_small_patch16_224_bimambav2_final_pool_mean_abs_pos_embed_with_midclstok_div2(pretrained=False, **kwargs):
     model = VisionMamba(
-        patch_size=16, embed_dim=384, depth=24, rms_norm=True, residual_in_fp32=True, fused_add_norm=True, final_pool_type='mean', if_abs_pos_embed=True, if_rope=False, if_rope_residual=False, bimamba_type="v2", if_cls_token=True, if_devide_out=True, use_middle_cls_token=True, **kwargs)
+        patch_size=16, embed_dim=384, depth=24, rms_norm=True, residual_in_fp32=True, fused_add_norm=True, final_pool_type='mean', if_abs_pos_embed=True, if_rope=False, if_rope_residual=False, bimamba_type="v2", if_cls_token=True, if_divide_out=True, use_middle_cls_token=True, **kwargs)
     model.default_cfg = _cfg()
     if pretrained:
         checkpoint = torch.hub.load_state_dict_from_url(
@@ -590,7 +591,7 @@ def vim_small_patch16_224_bimambav2_final_pool_mean_abs_pos_embed_with_midclstok
 @register_model
 def vim_small_patch16_stride8_224_bimambav2_final_pool_mean_abs_pos_embed_with_midclstok_div2(pretrained=False, **kwargs):
     model = VisionMamba(
-        patch_size=16, stride=8, embed_dim=384, depth=24, rms_norm=True, residual_in_fp32=True, fused_add_norm=True, final_pool_type='mean', if_abs_pos_embed=True, if_rope=False, if_rope_residual=False, bimamba_type="v2", if_cls_token=True, if_devide_out=True, use_middle_cls_token=True, **kwargs)
+        patch_size=16, stride=8, embed_dim=384, depth=24, rms_norm=True, residual_in_fp32=True, fused_add_norm=True, final_pool_type='mean', if_abs_pos_embed=True, if_rope=False, if_rope_residual=False, bimamba_type="v2", if_cls_token=True, if_divide_out=True, use_middle_cls_token=True, **kwargs)
     model.default_cfg = _cfg()
     if pretrained:
         checkpoint = torch.hub.load_state_dict_from_url(

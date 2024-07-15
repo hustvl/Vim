@@ -244,6 +244,7 @@ def interpolate_pos_embed(model, state_dict):
     embedding_size = pos_embed_checkpoint.shape[-1]
     num_patches = model.patch_embed.num_patches
     num_extra_tokens = model.pos_embed.shape[-2] - num_patches
+    # import ipdb; ipdb.set_trace()
     # height (== width) for the checkpoint position embedding
     orig_size = int((pos_embed_checkpoint.shape[-2] - num_extra_tokens) ** 0.5)
     # height (== width) for the new position embedding

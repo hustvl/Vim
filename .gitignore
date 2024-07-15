@@ -14,3 +14,5 @@ mamba/mamba_ssm.egg-info/
 mamba/selective_scan_cuda.cpython-310-x86_64-linux-gnu.so
 reference/
 causal-conv1d/
+work_dirs/
+__pycache__/
