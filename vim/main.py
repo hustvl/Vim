@@ -26,7 +26,6 @@ from augment import new_data_aug_generator
 from contextlib import suppress
 
 import models_mamba
-import vim_vmamba
 
 import utils
 
