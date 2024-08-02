@@ -24,13 +24,13 @@
 - Meet some problems of env? Requirements for reference: seg-requirements.txt
 
 
-## Train Your VimDet
+## Train Your VimSeg
 
-`bash scripts/ft_vim_tiny_vimdet.sh`
+`bash scripts/ft_vim_tiny_upernet.sh`
 
-## Test Your VimDet
+## Test Your VimSeg
 
-`bash scripts/eval_vim_tiny_vimdet.sh`
+`bash scripts/eval_vim_tiny_upernet.sh`
 
 ---
 
