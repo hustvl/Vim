@@ -10,7 +10,7 @@ certifi==2023.11.17
 charset-normalizer==3.3.2
 click==8.1.7
 cloudpickle==3.0.0
-contourpy==1.2.0
+contourpy
 cycler==0.12.1
 databricks-cli==0.18.0
 datasets==2.15.0
@@ -38,16 +38,16 @@ Mako==1.3.0
 # mamba-ssm @ file:///home/zhulianghui/VisionProjects/mamba/lib/mamba_ssm-1.0.1%2Bcu118torch2.1cxx11abiFALSE-cp310-cp310-linux_x86_64.whl#sha256=71ad1b1eafb05a6e8a41fd82e046fe85511d6378fa3a583e55215b6aa1d65ab9
 Markdown==3.5.1
 MarkupSafe==2.1.3
-matplotlib==3.8.2
+matplotlib
 mlflow==2.9.1
 mmcv==1.3.8
 mmsegmentation==0.14.1
 mpmath==1.3.0
 multidict==6.0.4
 multiprocess==0.70.15
-networkx==3.2.1
+networkx
 ninja==1.11.1.1
-numpy==1.26.2
+numpy
 # nvidia-cublas-cu12==12.1.3.1
 # nvidia-cuda-cupti-cu12==12.1.105
 # nvidia-cuda-nvrtc-cu12==12.1.105
@@ -63,7 +63,7 @@ numpy==1.26.2
 oauthlib==3.2.2
 opencv-python==4.8.1.78
 packaging==23.2
-pandas==2.1.3
+pandas
 Pillow==10.1.0
 platformdirs==4.1.0
 prettytable==3.9.0
@@ -81,7 +81,7 @@ regex==2023.10.3
 requests==2.31.0
 safetensors==0.4.1
 scikit-learn==1.3.2
-scipy==1.11.4
+scipy
 six==1.16.0
 smmap==5.0.1
 SQLAlchemy==2.0.23
@@ -99,7 +99,7 @@ transformers==4.35.2
 triton==2.1.0
 typing_extensions==4.8.0
 tzdata==2023.3
-urllib3==2.1.0
+urllib3==1.26.7
 wcwidth==0.2.12
 websocket-client==1.7.0
 Werkzeug==3.0.1

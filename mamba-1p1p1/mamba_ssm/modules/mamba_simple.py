@@ -9,7 +9,7 @@ import torch.nn.functional as F
 from torch import Tensor
 
 from einops import rearrange, repeat
-
+    
 try:
     from causal_conv1d import causal_conv1d_fn, causal_conv1d_update
 except ImportError:
@@ -26,10 +26,9 @@ except ImportError:
     selective_state_update = None
 
 try:
-    from mamba_ssm.ops.triton.layernorm import RMSNorm, layer_norm_fn, rms_norm_fn
+    from mamba_ssm.ops.triton.layer_norm import RMSNorm, layer_norm_fn, rms_norm_fn
 except ImportError:
     RMSNorm, layer_norm_fn, rms_norm_fn = None, None, None
-
 
 class Mamba(nn.Module):
     def __init__(
