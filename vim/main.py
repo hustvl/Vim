@@ -193,7 +193,7 @@ def get_args_parser():
     # amp about
     parser.add_argument('--if_amp', action='store_true')
     parser.add_argument('--no_amp', action='store_false', dest='if_amp')
-    parser.set_defaults(if_amp=True)
+    parser.set_defaults(if_amp=False)
 
     # if continue with inf
     parser.add_argument('--if_continue_inf', action='store_true')
@@ -283,7 +283,7 @@ def main(args):
 
     data_loader_val = torch.utils.data.DataLoader(
         dataset_val, sampler=sampler_val,
-        batch_size=int(1.5 * args.batch_size),
+        batch_size=int(1.5 * args.batch_size * 20),
         num_workers=args.num_workers,
         pin_memory=args.pin_mem,
         drop_last=False
@@ -445,6 +445,11 @@ def main(args):
         else:
             checkpoint = torch.load(args.resume, map_location='cpu')
         model_without_ddp.load_state_dict(checkpoint['model'])
+
+        # add ema load
+        if args.model_ema:
+                utils._load_checkpoint_for_ema(model_ema, checkpoint['model_ema'])
+
         if not args.eval and 'optimizer' in checkpoint and 'lr_scheduler' in checkpoint and 'epoch' in checkpoint:
             optimizer.load_state_dict(checkpoint['optimizer'])
             lr_scheduler.load_state_dict(checkpoint['lr_scheduler'])
@@ -460,6 +465,9 @@ def main(args):
     if args.eval:
         test_stats = evaluate(data_loader_val, model, device, amp_autocast)
         print(f"Accuracy of the network on the {len(dataset_val)} test images: {test_stats['acc1']:.1f}%")
+
+        test_stats = evaluate(data_loader_val, model_ema.ema, device, amp_autocast)
+        print(f"Accuracy of the ema network on the {len(dataset_val)} test images: {test_stats['acc1']:.1f}%")
         return
     
     # log about
@@ -539,7 +547,6 @@ def main(args):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser('DeiT training and evaluation script', parents=[get_args_parser()])
     args = parser.parse_args()
-    args.gpu = None
     if args.output_dir:
         Path(args.output_dir).mkdir(parents=True, exist_ok=True)
     main(args)
