@@ -87,10 +87,9 @@ This project is based on Mamba ([paper](https://arxiv.org/abs/2312.00752), [code
 If you find Vim is useful in your research or applications, please consider giving us a star 🌟 and citing it by the following BibTeX entry.
 
 ```bibtex
- @article{vim,
+@inproceedings{vim,
   title={Vision Mamba: Efficient Visual Representation Learning with Bidirectional State Space Model},
-  author={Lianghui Zhu and Bencheng Liao and Qian Zhang and Xinlong Wang and Wenyu Liu and Xinggang Wang},
-  journal={arXiv preprint arXiv:2401.09417},
-  year={2024}
+  author={Zhu, Lianghui and Liao, Bencheng and Zhang, Qian and Wang, Xinlong and Liu, Wenyu and Wang, Xinggang},
+  booktitle={Forty-first International Conference on Machine Learning}
 }
 ```
