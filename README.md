@@ -8,7 +8,7 @@
 
 (\*) equal contribution, (<sup>:email:</sup>) corresponding author.
 
-ICML 2024 ([conference paper](https://icml.cc/virtual/2024/paper_metadata_from_author/33768)), ArXiv Preprint ([arXiv 2401.09417](https://arxiv.org/abs/2401.09417)), HuggingFace Page ([🤗 2401.09417](https://huggingface.co/papers/2401.09417))
+ICML 2024 ([conference paper](https://icml.cc/virtual/2024/poster/33768)), ArXiv Preprint ([arXiv 2401.09417](https://arxiv.org/abs/2401.09417)), HuggingFace Page ([🤗 2401.09417](https://huggingface.co/papers/2401.09417))
 
 
 </div>
