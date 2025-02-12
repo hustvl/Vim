@@ -8,7 +8,7 @@
 
 (\*) equal contribution, (<sup>:email:</sup>) corresponding author.
 
-ArXiv Preprint ([arXiv 2401.09417](https://arxiv.org/abs/2401.09417)), HuggingFace Page ([🤗 2401.09417](https://huggingface.co/papers/2401.09417))
+ICML 2024 ([conference paper](https://icml.cc/virtual/2024/poster/33768)), ArXiv Preprint ([arXiv 2401.09417](https://arxiv.org/abs/2401.09417)), HuggingFace Page ([🤗 2401.09417](https://huggingface.co/papers/2401.09417))
 
 
 </div>
@@ -19,6 +19,8 @@ ArXiv Preprint ([arXiv 2401.09417](https://arxiv.org/abs/2401.09417)), HuggingFa
 
 
 ### News
+* **` May. 2nd, 2024`:** Vision Mamba (Vim) is accepted by ICML2024. 🎉 Conference page can be found [here](https://icml.cc/virtual/2024/paper_metadata_from_author/33768).
+
 * **` Feb. 10th, 2024`:** We update Vim-tiny/small weights and training scripts. By placing the class token at middle, Vim achieves improved results. Further details can be found in code and our updated [arXiv](https://arxiv.org/abs/2401.09417).
 
 * **` Jan. 18th, 2024`:** We released our paper on Arxiv. Code/Models are coming soon. Please stay tuned! ☕️
@@ -92,10 +94,9 @@ This project is based on Mamba ([paper](https://arxiv.org/abs/2312.00752), [code
 If you find Vim is useful in your research or applications, please consider giving us a star 🌟 and citing it by the following BibTeX entry.
 
 ```bibtex
- @article{vim,
+ @inproceedings{vim,
   title={Vision Mamba: Efficient Visual Representation Learning with Bidirectional State Space Model},
-  author={Lianghui Zhu and Bencheng Liao and Qian Zhang and Xinlong Wang and Wenyu Liu and Xinggang Wang},
-  journal={arXiv preprint arXiv:2401.09417},
-  year={2024}
+  author={Zhu, Lianghui and Liao, Bencheng and Zhang, Qian and Wang, Xinlong and Liu, Wenyu and Wang, Xinggang},
+  booktitle={Forty-first International Conference on Machine Learning}
 }
 ```
