@@ -1,5 +1,5 @@
 /******************************************************************************
- * Copyright (c) 2023, Tri Dao.
+ * Copyright (c) 2024, Tri Dao.
  ******************************************************************************/
 
 #pragma once
@@ -21,6 +21,7 @@ struct ConvParamsBase {
     index_t out_c_stride;
     index_t out_l_stride;
 
+    int conv_state_len;
     index_t conv_state_batch_stride;
     index_t conv_state_c_stride;
     index_t conv_state_l_stride;
@@ -32,6 +33,20 @@ struct ConvParamsBase {
     void *__restrict__ out_ptr;
 
     void *__restrict__ conv_state_ptr;
+    int32_t *__restrict__ cache_seqlens;
+
+    void *__restrict__ seq_idx_ptr;
+
+    // No __restrict__ since initial_states could be the same as final_states.
+    void * initial_states_ptr;
+    index_t initial_states_batch_stride;
+    index_t initial_states_l_stride;
+    index_t initial_states_c_stride;
+
+    void * final_states_ptr;
+    index_t final_states_batch_stride;
+    index_t final_states_l_stride;
+    index_t final_states_c_stride;
 };
 
 struct ConvParamsBwd: public ConvParamsBase {
@@ -49,5 +64,14 @@ struct ConvParamsBwd: public ConvParamsBase {
     void *__restrict__ dweight_ptr;
     void *__restrict__ dbias_ptr;
     void *__restrict__ dout_ptr;
-};
 
+    void * dinitial_states_ptr;
+    index_t dinitial_states_batch_stride;
+    index_t dinitial_states_l_stride;
+    index_t dinitial_states_c_stride;
+
+    void * dfinal_states_ptr;
+    index_t dfinal_states_batch_stride;
+    index_t dfinal_states_l_stride;
+    index_t dfinal_states_c_stride;
+};
