@@ -497,8 +497,8 @@ class VisionMamba(nn.Module):
                 hidden_states_b, residual_b = self.layers[i * 2 + 1](
                     hidden_states.flip([1]), None if residual == None else residual.flip([1]), inference_params=inference_params
                 )
-                hidden_states = hidden_states_f + hidden_states_b.flip([1])
-                residual = residual_f + residual_b.flip([1])
+                hidden_states = (hidden_states_f + hidden_states_b.flip([1])) / 2
+                residual = (residual_f + residual_b.flip([1])) / 2
 
         if not self.fused_add_norm:
             if residual is None:
